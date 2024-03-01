@@ -39,6 +39,7 @@ function setupInitialValues() {
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
+  console.log("update called!");
   const values = getCurrentUIValues();
   updateMonthly(calculateMonthlyPayment(values));
 }
@@ -59,9 +60,10 @@ function calculateMonthlyPayment(values) {
 // update the UI to show the value.
 function updateMonthly(monthly) {
   const monthlyPayment = document.getElementById("monthly-payment");
-  if(monthlyPayment.innerText == "NaN"){
+  if(isNaN(monthly)){
     monthlyPayment.innerText = " ";
   } else{
   monthlyPayment.innerText = monthly;
   }
 }
+

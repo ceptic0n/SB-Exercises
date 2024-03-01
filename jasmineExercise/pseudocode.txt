@@ -1,0 +1,67 @@
+Payments 
+
+get eyes on the billAmount, tipAmount, and the entire
+paymentForm
+
+allPayments are in an Object 
+paymentId is a counter starting at 0
+eventListener on the paymentForm, execute submitPaymentInfo()
+on submit.
+
+submitPaymentInfo(e){
+    let curPayment = createCurPayment();
+
+
+}
+
+createCurPayment(){
+    let billAmount = the billAMount.value
+    let tipAmount = the tipAmount.value
+
+    if the don't exist, then return.
+
+    else
+
+    return an object containing:
+    the bill Amount 
+    the tip amount 
+    and the tipPercent (tipPercent is calculated in the helper file)
+
+}
+
+
+
+
+
+
+servers.js
+
+
+get eyes on the serverNameInput, the serverForm
+and the table
+
+the servers will be stored in an object called allServers[]
+each server will have an id starting
+from 1 and counting upwards
+
+eventListener for the serverForm, when submit is clicked
+execute submitServerInfo();
+
+submitServerInfo(event){
+    preventDefault
+
+    serverName = whatever name is in the server name
+
+    if the server name is valid
+    increment serverId
+    add a new server to allServers[]
+
+    updateServerTable();
+
+    reset the servernameInput
+}
+
+updateServerTable(){
+    uh jsut update everything
+
+}

@@ -11,7 +11,19 @@ describe("Servers test (with setup and tear-down)", function() {
     expect(allServers['server' + serverId].serverName).toEqual('Alice');
   });
 
+  // it('should calculate the tip average', function(){
+  //   submitServerInfo();
+
+  //   expect(something on the dom).toEqual();
+  // });
+
   afterEach(function() {
     // teardown logic
+    serverTBody.innerHTML = '';
+    allServers = {};
+    serverId = 0;
+    
+    console.log("Reset!");
   });
 });
+
