@@ -11,15 +11,14 @@ describe("Servers test (with setup and tear-down)", function() {
     expect(allServers['server' + serverId].serverName).toEqual('Alice');
   });
 
-  // it('should calculate the tip average', function(){
-  //   submitServerInfo();
-
-  //   expect(something on the dom).toEqual();
-  // });
+  it('should check if alice exists', function(){
+    submitServerInfo();
+    let camera = document.querySelector("#server1 td");
+    expect(camera.innerText).toBe("Alice");
+  });
 
   afterEach(function() {
     // teardown logic
-    serverTBody.innerHTML = '';
     allServers = {};
     serverId = 0;
     

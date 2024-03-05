@@ -22,3 +22,20 @@ function remove(arr, val){
 		return el !== val
 	})
 };
+
+const body = document.querySelector(".test");
+
+// document.addEventListener("DOMContentLoaded", function(){
+// 	let string = "Hello!";
+
+// 	createnewH1(string);
+
+// });
+
+function createnewH1(headingName){
+	let title = document.createElement("h1");
+	title.innerText = headingName;
+	title.classList.add("color");
+	body.append(title);
+	
+}
