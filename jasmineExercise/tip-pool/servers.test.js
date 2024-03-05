@@ -11,7 +11,7 @@ describe("Servers test (with setup and tear-down)", function() {
     expect(allServers['server' + serverId].serverName).toEqual('Alice');
   });
 
-  it('should check if alice exists', function(){
+  it('should check if alice exists on the table updateServerTable', function(){
     submitServerInfo();
     let camera = document.querySelector("#server1 td");
     expect(camera.innerText).toBe("Alice");
