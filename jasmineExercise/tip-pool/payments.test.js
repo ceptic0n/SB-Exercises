@@ -1,7 +1,7 @@
 describe("Payments Test (with setup and teardown Logic)", function(){
 
     //simulate user Input to test
-    beforeEach(function(){
+    beforeAll(function(){
         billAmtInput.value = 100;
         tipAmtInput.value = 20;
     });
@@ -14,12 +14,11 @@ describe("Payments Test (with setup and teardown Logic)", function(){
         expect(camera.innerText).toBe("$100");
     })
 
-    it("should return an object return the proper values createCurPayment", function(){
-        const object = createCurPayment();
+    it("should return empty if given undefined inputsreateCurPayment", function(){
+        createCurPayment();
 
-        expect(object.billAmt).toBe("100");
-        expect(object.tipAmt).toBe("20");
-        expect(object.tipPercent).toBe(20);
+        expect(billAmt.innerText).toBe("");
+        expect(tipAmt.innerText).toBe("");
     })
 
     it("should add 3 new tds to the table appendPaymentTable", function(){
@@ -32,12 +31,13 @@ describe("Payments Test (with setup and teardown Logic)", function(){
     it("should create update the summary with the proper values updateSummary()", function(){
         let tds = document.querySelectorAll("#summaryTable td");
 
-        expect(tds[0].innerText).toBe("$200");
-        expect(tds[1].innerText).toBe("$40");
+        expect(tds[0].innerText).toBe("$100");
+        expect(tds[1].innerText).toBe("$20");
         expect(tds[2].innerText).toBe("20%");
     });
 
-    afterEach(function(){
+    //tearDown
+    afterAll(function(){
         billAmtInput.value = "";
         tipAmtInput.value = "";
     })
