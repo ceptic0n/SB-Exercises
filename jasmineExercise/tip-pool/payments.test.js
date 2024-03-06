@@ -25,7 +25,7 @@ describe("Payments Test (with setup and teardown Logic)", function(){
         submitPaymentInfo();
         let camera = document.querySelector("#payment1");
 
-        expect(camera.querySelectorAll("td").length).toBe(3);
+        expect(camera.querySelectorAll("td").length).toBe(4);
     });
 
     it("should create update the summary with the proper values updateSummary()", function(){

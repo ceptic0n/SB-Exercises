@@ -13,9 +13,6 @@ describe("Helpers Test (with setup and teardown)", function(){
         let tips = sumPaymentTotal("tipAmt");
         let bills = sumPaymentTotal("billAmt");
         let tipPercs = sumPaymentTotal("tipPercent");
-        console.log(tips);
-        console.log(bills)
-        console.log(tipPercs);
         expect(tips).toBe(60);
         expect(bills).toBe(600);
         expect(tipPercs).toBe(30);
@@ -34,6 +31,16 @@ describe("Helpers Test (with setup and teardown)", function(){
 
         throwawayTr.remove;
     });
+
+    it("should delete a row appendDeleteBtn", function(){
+        let throwawayTr = document.createElement("tr");
+        appendDeleteBtn(throwawayTr);
+        console.log(throwawayTr);
+        throwawayTr.lastChild.dispatchEvent(new Event("click"));
+        console.log(throwawayTr);
+
+        expect(document.body.contains(throwawayTr)).toBe(false);
+    })
 
     afterEach(function(){
         allPayments = {};

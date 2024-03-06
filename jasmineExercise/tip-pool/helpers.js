@@ -24,3 +24,16 @@ function appendTd(tr, value) {
 
   tr.append(newTd);
 }
+
+function appendDeleteBtn(tr){
+  let deleteBtn = document.createElement("td");
+  deleteBtn.textContent = "X";
+
+  deleteBtn.addEventListener("click", function() {
+    console.log("Clicked!");
+    deleteBtn.parentElement.remove();
+    updateSummary();
+  });
+
+  tr.appendChild(deleteBtn);
+}
