@@ -190,29 +190,38 @@ console.log("*****************");
  * 
 */
 
-
-// //answer
-// function addKeyAndValue(arr){
-//     let output = [];
-//     forEach(arr, function(element){
-//          ???????
-//     });
-//     return output;
-// // }
+//answer
+function addKeyAndValue(arr, newKey, keyValue){
+    let output = [];
+    forEach(arr, function(element){
+        let newObj = {...element};
+        newObj[newKey]=keyValue;
+        output.push(newObj);
+    });
+    return output;
+}
 
 //test array
-let keysValues = [{name:"Elie"}, {name:"Tim"}, {name: "Matt"},{name:"Colt"}, "title", "instructor"];
+let testArrayNames = 
+    [   
+        {name:"Elie"},
+        {name:"Tim"},
+        {name:"Matt"},
+        {name:"Colt"}
+    ];
 
 //before addKeyAndValue()
-console.log(keysValues);
+console.log("before addKeyAndValue")
+console.log(testArrayNames);
 
 
 //implementation
-// let newkeysValues = addKeyAndValue(keysValues);
+let newTestArrayNames = addKeyAndValue(testArrayNames, "Title", "Instructor");
 
 
 //after addKeyandValues();
-// console.log(newkeysValues);
+console.log("after addKeyAndValue");
+console.log(newTestArrayNames);
 
 
 
@@ -248,7 +257,7 @@ function vowelCount(str){
 
 
 //before implementation
-console.log("Before voweCount()")
+console.log("Before vowelCount()")
 console.log("Hello");
 console.log("Tim");
 console.log("hmmm");
@@ -256,7 +265,7 @@ console.log("I am Awesome and so are you");
 
 
 //after implementation
-console.log("after implementation");
+console.log("after vowelCount()");
 
 console.log(vowelCount("Hello"));
 console.log(vowelCount("Tim"));
@@ -292,12 +301,12 @@ let values5 = [1,2,3,4,5];
 let values6 = [10,20,30,40,50];
 
 //before implementation
-console.log("before implementation");
+console.log("before doubleValuesWithMap()");
 console.log(values5);
 console.log(values6);
 
 //after implementation
-console.log("after implementation");
+console.log("after doubleValuesWithMap()");
 console.log(doubleValuesWithMap(values5));
 console.log(doubleValuesWithMap(values6));
 
@@ -343,7 +352,180 @@ console.log("*****************");
  * each object
  */
 
-function extractKey(arr){
-
+//answer
+function extractKey(arr, key){
+    return myMap(arr, function(val){
+        if(typeof val === "object"){
+            return val[key];
+        }
+        return val;
+    });
 }
 
+
+//test array
+let namesArr = [
+    {name:"elie"},
+    {name:"tim"},
+    {name:"Matt"},
+    {name:"Colt"},
+    ]
+
+//before implementation
+console.log("before extractKey()");
+console.log(namesArr);
+
+//after implementation
+console.log("after extractKey()");
+console.log(extractKey(namesArr, "name"));
+
+
+console.log("*****************");
+
+
+//extractFullName
+/**
+ * Write a function called extractFullName which accepts an array of
+ * objects and returns a new array with the value of the key with a name
+ * of "first" and the value of a key with the name of "last" in each object,
+ * concatenated together witha space
+ */
+
+//answer
+function extractFullName(arr){
+
+    return myMap(arr, function(element){
+        let string = element.first+ " " + element.last;
+
+        return string;
+    });
+}
+
+//testArray
+let firstLastNames = 
+    [
+        {first:"Elie", last: "Schoppik"},
+        {first:"Tim", last: "Garcia"},
+        {first:"Matt", last: "Lane"},
+        {first:"Colt", last: "Steele"}
+    ];
+
+//before implementation
+console.log("before extractFullName()");
+console.log(firstLastNames);
+
+//after implementation
+console.log("after extractFullName()");
+console.log(extractFullName(firstLastNames));
+
+
+
+
+
+
+//----------------//
+//------filter----//
+//----------------//
+
+
+
+
+
+//filterByValue
+/**
+ * Write a function called filterByValue which accepts an array of objects
+ * and a key andreturns a new array with all the objects that contain
+ * that key.
+ */
+
+//answer
+function filterByValue(array, keyName){
+    return myFilter(array, function(element){
+        return element[keyName] === true;
+    });
+}
+
+
+//test Array
+let peopleAndCats = 
+    [
+        {first:"Elie", last: "Schoppik"},
+        {first:"Tim", last: "Garcia", isCatOwner: true},
+        {first:"Matt", last: "Lane"},
+        {first:"Colt", last: "Steele", isCatOwner: true}
+    ];
+
+//before implementation
+console.log("before filterByValue");
+
+console.log(peopleAndCats);
+
+//after implementation
+console.log("after filterByValue");
+
+console.log(filterByValue(peopleAndCats, "isCatOwner"));
+
+
+console.log("*****************");
+
+
+
+//find
+/**
+ * Write a function called find which accepts an array and a value and
+ * returns the first element in the array that has the same value as the
+ * second paramenter or undefined if the value is not found in the array
+ */
+
+//answer
+function find(arr, value){
+    return myFilter(arr, function(element){
+        return element === value;
+    });
+    return undefined;
+}
+
+//test arrays
+let values7 = [1,2,3,4,5];
+let values8 = [6,7,8,9,10];
+
+
+//before implementation
+console.log("before find()");
+console.log(values7);
+console.log(values8);
+
+
+//after implementation
+console.log("after find()");
+console.log(find(values7, 3));
+console.log(find(values8, 3));
+
+
+
+console.log("*****************");
+
+
+
+//findInbj
+/**
+ * Write a function called findInObj which accepts an array object, a key, and some
+ * value to search for and returns the first foud value in the array
+ */
+
+
+//answer
+function findInObj(arr, key, value){
+    return myFilter(arr, function(element){
+        return element[key] === value;
+    });
+};
+
+
+//before implementation
+console.log("before findInObj()");
+console.log(peopleAndCats);
+
+//after implementation
+console.log("after findInObj()");
+console.log(findInObj(peopleAndCats,"first", "Tim"));
