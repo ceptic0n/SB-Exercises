@@ -529,3 +529,75 @@ console.log(peopleAndCats);
 //after implementation
 console.log("after findInObj()");
 console.log(findInObj(peopleAndCats,"first", "Tim"));
+
+
+
+console.log("*****************");
+
+
+//removeVowels
+/**
+ * Write a function called removeVowels which accepts a string
+ * and returns a new string with all of the vowels (both uppercased
+ * and lowercased) removed. Every character in the new string should
+ * be lowercased.
+ */
+
+function removeVowels(string){
+    const vowels = "aeiouAEIOU";
+    return myFilter(string, function(letter){
+        return !vowels.includes(letter);
+    }).join("").toLowerCase();
+}
+
+//before implementation
+console.log("before removeVowels()");
+console.log("Elie");
+console.log("TIM");
+console.log("ZZZZZZZZZZZZ");
+
+//after implementation
+console.log("after removeVowels()");
+console.log(removeVowels("Elie"));
+console.log(removeVowels("TIM"));
+console.log(removeVowels("zzzzzzZZ"));
+
+
+console.log("*****************");
+
+
+
+//doubleOddNumbers()
+/**
+ * Write a function called doubleOddNumbers() which accepts an array
+ * and returns a new array with all of the odd numbers doubled (HINT - 
+ * you can use map and filter to double and then filter the odd numbers)
+ */
+
+//answer
+function doubleOddNumbers(arr){
+    let odds = myFilter(arr, function(num){
+        return (num % 2);
+    });
+
+    let output = myMap(odds, function(num){
+        return num * 2;
+    });
+
+    return output;
+}
+
+//test array
+
+let values9 = [1, 2, 3, 4, 5];
+let values10 = [4,4,4,4,4,4];
+
+//before implementation 
+console.log("before doubleOddNumbers()");
+console.log(values9);
+console.log(values10);
+
+//after implementation
+console.log("after doubleOddNumbers()");
+console.log(doubleOddNumbers(values9));
+console.log(doubleOddNumbers(values10));
