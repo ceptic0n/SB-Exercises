@@ -149,3 +149,32 @@ function checkForWin() {
 
 makeBoard();
 makeHtmlBoard();
+
+
+/**
+ * Make a Constructor class with height, width, and the board i guess..?
+ * add default values for the height and width
+ * 
+ * 
+ */
+
+
+
+//my code goes here
+class Game{
+  constructor(height = 6, width = 7, board = []){
+    this.height = height;
+    this.width = width;
+    this.board = board;
+  }
+
+
+  makeBoard(){
+    for (let y = 0; y < this.height; y++) {
+      this.board.push(Array.from({ length: this.width}));
+    }
+  }
+
+
+  
+}
