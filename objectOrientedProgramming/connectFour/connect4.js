@@ -54,6 +54,15 @@ class Game{
     }
   }
 
+  removeCurrentBoard(){
+    console.log("removeCurrentBoard()");
+    const board = document.getElementById("board")
+    for(let i = 0; i < this.height + 1; i ++){
+      console.log(`removing ${i}`);
+      board.removeChild(board.firstChild);
+    }
+  }
+
   findSpotForCol(x) {
     for (let y = this.height - 1; y >= 0; y--) {
       if (!this.board[y][x]) {
@@ -75,8 +84,16 @@ class Game{
     spot.append(piece);
   }
   
+  //when the game ends, pause the event listener so there can be no more input
   endGame(msg) {
     alert(msg);
+    
+    //grab the coloumn top element
+    const columnTop = document.getElementById("column-top");
+    //remove its eventListener so the game can't continue
+    columnTop.removeEventListener("click", this.handleClick);
+
+    this.removeCurrentBoard();
   }
 
   handleClick(evt) {
@@ -144,4 +161,8 @@ class Game{
 }
 
 
-new Game(5, 6);
+const startButton = document.getElementById("startButton");
+
+startButton.addEventListener("click",function(){
+  new Game(6,7);
+});
