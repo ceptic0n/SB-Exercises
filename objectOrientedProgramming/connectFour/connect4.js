@@ -11,6 +11,7 @@ class Game{
     this.width = width;
     this.board = board;
     this.currPlayer = 1;
+    this.gameOver = false;
     this.handleClick = this.handleClick.bind(this);
 
     this.makeBoard();
@@ -93,10 +94,13 @@ class Game{
     //remove its eventListener so the game can't continue
     columnTop.removeEventListener("click", this.handleClick);
 
-    this.removeCurrentBoard();
+    // this.removeCurrentBoard();
   }
 
   handleClick(evt) {
+
+    if(this.gameOver) return;
+
     // get x from ID of clicked cell
     const x = +evt.target.id;
   
@@ -112,11 +116,13 @@ class Game{
     
     // check for win
     if (this.checkForWin()) {
+      this.gameOver = true;
       return this.endGame(`Player ${this.currPlayer} won!`);
     }
     
     // check for tie
     if (this.board.every(row => row.every(cell => cell))) {
+      this.gameOver = true;
       return this.endGame('Tie!');
     }
       
@@ -164,5 +170,12 @@ class Game{
 const startButton = document.getElementById("startButton");
 
 startButton.addEventListener("click",function(){
+  
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+
   new Game(6,7);
+
+  // const columnTop = document.getElementById("column-top");
+  // columnTop.addEventListener("click", game.handleClick);
 });
