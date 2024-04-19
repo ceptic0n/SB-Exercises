@@ -37,6 +37,7 @@ class Game{
   }
 
 
+
   makeBoard(){
     for (let y = 0; y < this.height; y++) {
       this.board.push(Array.from({ length: this.width}));
@@ -190,13 +191,12 @@ class Game{
 
 
 const startButton = document.getElementById("startButton");
+const p1 = document.getElementById("player1");
+const p2 = document.getElementById("player2");
 
 startButton.addEventListener("click",function(e){
   e.preventDefault();
   
-  const p1 = document.getElementById("player1");
-  const p2 = document.getElementById("player2");
-
   const person1 = new Player(p1.value);
   const person2 = new Player(p2.value);
 
