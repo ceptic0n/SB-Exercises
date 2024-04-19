@@ -5,12 +5,30 @@
  * board fills (tie)
  */
 //my code goes here
+
+class Player{
+  constructor(color){
+    this.color = color;
+  }
+  getColor(){
+    return this.color;
+  }
+}
+
+
+
+
+
+
+
 class Game{
-  constructor(height = 6, width = 7, board = []){
+  constructor(height = 6, width = 7, board = [], player1 = new Player("red"), player2 = new Player("blue")){
     this.height = height;
     this.width = width;
     this.board = board;
-    this.currPlayer = 1;
+    this.player1 = player1;
+    this.player2 = player2;
+    this.currPlayer = this.player1;
     this.gameOver = false;
     this.handleClick = this.handleClick.bind(this);
 
@@ -53,6 +71,9 @@ class Game{
   
       board.append(row);
     }
+
+    console.log(this.currPlayer.color);
+
   }
 
   removeCurrentBoard(){
@@ -78,7 +99,7 @@ class Game{
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(`p${this.currPlayer}`);
+    piece.style.backgroundColor = this.currPlayer.getColor();
     piece.style.top = -50 * (y + 2);
 
     const spot = document.getElementById(`${y}-${x}`);
@@ -117,7 +138,7 @@ class Game{
     // check for win
     if (this.checkForWin()) {
       this.gameOver = true;
-      return this.endGame(`Player ${this.currPlayer} won!`);
+      return this.endGame(`${this.currPlayer.color} Wins!!`);
     }
     
     // check for tie
@@ -127,7 +148,8 @@ class Game{
     }
       
     // switch players
-    this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+    this.currPlayer = (this.currPlayer === this.player1) ? this.player2 : this.player1;
+  
   }
   
   checkForWin() {
@@ -169,13 +191,18 @@ class Game{
 
 const startButton = document.getElementById("startButton");
 
-startButton.addEventListener("click",function(){
+startButton.addEventListener("click",function(e){
+  e.preventDefault();
   
+  const p1 = document.getElementById("player1");
+  const p2 = document.getElementById("player2");
+
+  const person1 = new Player(p1.value);
+  const person2 = new Player(p2.value);
+
+
   const board = document.getElementById("board");
   board.innerHTML = "";
 
-  new Game(6,7);
-
-  // const columnTop = document.getElementById("column-top");
-  // columnTop.addEventListener("click", game.handleClick);
+  new Game(6,7, [], person1, person2);
 });
