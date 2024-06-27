@@ -2,32 +2,30 @@ console.log("Let's get this party started!");
 
 const KEY = "Q0yE0f71P3haCUOm8nUYXjj3qTy5oVPN"
 
-
-async function getRandomResponse(){
-    let response = await axios.get("https://api.giphy.com/v1/gifs/random", {params: {api_key: KEY}});
-    console.log(response);
+async function getGifSearchURL(query){
+    let response = await axios.get("https://api.giphy.com/v1/gifs/search", {params:{api_key: KEY, q:query}});
+    return response.data.data[0].images.original.url;
 }
 
-
-
-async function getRandomGifURL(){
-    let response = await axios.get("https://api.giphy.com/v1/gifs/random", {params: {api_key: KEY}});
-    let link = response.data.data.images.original.url;
-    return link;
-}
-
-async function appendGif(gifURL){
-    let link = await getRandomGifURL();
-
-    console.log(link);
-
+async function appendGif(getURL){
+    let link = await getURL;
     let newImg = $('<img/>');
     newImg.attr('src', link);
-    console.log(newImg.prop('outerHTML'));
-    $('#gifCollection').append(newImg);
+    newImg.toggleClass("gif");
+    newImg.toggleClass("max-vw-25");
+    newImg.toggleClass("max-vh-25");
+    $('.gifCollection').append(newImg);
 };
 
-async function appendRandomGif(){
-    let gifURL = await getRandomGifURL();
-    appendGif(gifURL);
-}
+$('.searchButton').on('click', function(){
+    let query = $('.gifQuery').val();
+    if(query === ''){
+        alert("Please Enter a Search Term")
+    } else {
+    appendGif(getGifSearchURL(query));
+    }
+});
+
+$('.removeGifs').on('click', function(){
+    $('.gif').remove();
+})
