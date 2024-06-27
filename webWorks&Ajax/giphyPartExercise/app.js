@@ -8,13 +8,22 @@ async function getRandomResponse(){
     console.log(response);
 }
 
+
+
 async function getRandomGifURL(){
     let response = await axios.get("https://api.giphy.com/v1/gifs/random", {params: {api_key: KEY}});
-    return response.data.data.images.original.url;
+    let link = response.data.data.images.original.url;
+    return link;
 }
 
-function appendGif(gifURL){
-    let newImg = $('<img>').attr('src', gifURL);
+async function appendGif(gifURL){
+    let link = await getRandomGifURL();
+
+    console.log(link);
+
+    let newImg = $('<img/>');
+    newImg.attr('src', link);
+    console.log(newImg.prop('outerHTML'));
     $('#gifCollection').append(newImg);
 };
 
