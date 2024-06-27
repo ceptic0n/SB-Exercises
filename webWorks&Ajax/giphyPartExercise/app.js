@@ -10,10 +10,15 @@ async function getRandomResponse(){
 
 async function getRandomGifURL(){
     let response = await axios.get("https://api.giphy.com/v1/gifs/random", {params: {api_key: KEY}});
-    console.log(response.data.data.images.original.url);
+    return response.data.data.images.original.url;
 }
 
 function appendGif(gifURL){
-    let newImg = $(`'<img src="${gifURL}"/>'`)
+    let newImg = $('<img>').attr('src', gifURL);
     $('#gifCollection').append(newImg);
 };
+
+async function appendRandomGif(){
+    let gifURL = await getRandomGifURL();
+    appendGif(gifURL);
+}
