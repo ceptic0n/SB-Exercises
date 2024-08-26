@@ -4,7 +4,6 @@ const Pokecard = (props) => {
     let pokemon = props.pokemonName;
     let type = props.pokemonType;
     let baseEXP = props.baseExperience;
-    let pokemonImg = props.pokemonImg;
     let pokemonID = props.pokemonID;
 
   return (
