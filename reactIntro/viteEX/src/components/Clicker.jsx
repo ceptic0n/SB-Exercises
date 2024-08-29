@@ -1,13 +1,15 @@
 import React from 'react'
+import { useState } from 'react'
 
 const Clicker = () => {
-    let count = 0
-    const incrementCount = () => {
-        count ++;
-        console.log(count);
-    }
+    const [count, setCount] = React.useState(0)
+    
   return (
-    <button onClick = {incrementCount}>Count = {count}</button>
+    <div>
+        <button onClick = {() => setCount(count + 1)}>Count = {count}</button>
+        <button onClick = {() => setCount(count - 1)}>Count = {count}</button>
+    </div>
+    
   )
 }
 
