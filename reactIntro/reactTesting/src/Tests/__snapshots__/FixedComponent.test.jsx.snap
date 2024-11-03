@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <p>
+      Hello, I'm a FixedComponent!
+    </p>
+    <p>
+      Here are some numders:
+    </p>
+    <p>
+      10
+    </p>
+    <p>
+      11
+    </p>
+    <p>
+      12
+    </p>
+  </div>
+</DocumentFragment>
+`;
